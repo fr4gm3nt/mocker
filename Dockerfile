@@ -39,6 +39,9 @@ RUN set -x && \
     docker-php-ext-enable imagick
 
 RUN set -x \
+    && docker-php-ext-install pcntl
+
+RUN set -x \
     && php -r "copy('https://getcomposer.org/installer', 'composer-setup.php');" \
     && php composer-setup.php --install-dir=/usr/local/bin --filename=composer \
     && php -r "unlink('composer-setup.php');"
