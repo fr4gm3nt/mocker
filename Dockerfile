@@ -1,5 +1,5 @@
-# Docker file for Mocker - Magento 2.2+
-FROM php:7.1-fpm
+# Docker file for Mocker - Magento 2.0-2.1
+FROM php:7.0-fpm
 
 RUN apt-get update && \
     DEBIAN_FRONTEND=noninteractive apt-get install -y nano vim curl git acl zip gnupg
@@ -31,9 +31,15 @@ RUN set -x && \
     pecl install xdebug && \
     docker-php-ext-enable xdebug
 
+RUN apt-get update \
+    && apt-get install -y --no-install-recommends libmagickwand-dev
+
 RUN set -x && \
     pecl install imagick && \
     docker-php-ext-enable imagick
+
+RUN set -x \
+    && docker-php-ext-install pcntl
 
 RUN set -x \
     && php -r "copy('https://getcomposer.org/installer', 'composer-setup.php');" \
