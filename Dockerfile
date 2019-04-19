@@ -1,5 +1,5 @@
-# Docker file for Mocker - Magento 2.2+
-FROM php:7.1-fpm
+# Docker file for Mocker - Magento 2.3+
+FROM php:7.2-fpm
 
 RUN apt-get update && \
     DEBIAN_FRONTEND=noninteractive apt-get install -y nano vim curl git acl zip gnupg
@@ -20,7 +20,7 @@ RUN set -x \
     && apt-get install -y libpng-dev libmcrypt-dev libxslt-dev
 
 RUN set -x \
-    && docker-php-ext-install mcrypt xsl pdo_mysql soap zip bcmath
+    && docker-php-ext-install mcrypt xsl pdo_mysql soap zip bcmath ctype dom hash iconv mbstring openssl simplexml libxml
 
 RUN set -x \
     && apt-get install -y libfreetype6-dev libjpeg62-turbo-dev \
@@ -40,6 +40,9 @@ RUN set -x && \
 
 RUN set -x \
     && docker-php-ext-install pcntl
+
+RUN docker-php-ext-configure opcache --enable-opcache \
+    && docker-php-ext-install opcache
 
 RUN set -x \
     && php -r "copy('https://getcomposer.org/installer', 'composer-setup.php');" \
