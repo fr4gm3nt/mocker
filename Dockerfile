@@ -1,5 +1,5 @@
 # Docker file for Mocker - Magento 2.3+
-FROM php:7.1-fpm
+FROM php:7.2-fpm
 
 RUN apt-get update && \
     DEBIAN_FRONTEND=noninteractive apt-get install -y nano vim curl git acl zip gnupg
@@ -12,14 +12,14 @@ RUN set -x && \
     chmod +x ./n98-magerun2.phar && \
 
 RUN set -x \
-    && apt-get install -y zlib1g-dev libicu-dev g++ \
+    && apt-get install -y zlib1g-dev libicu-dev \
     && docker-php-ext-install intl
 
 RUN set -x \
-    && apt-get install -y libpng-dev libmcrypt-dev libxslt-dev libxml-dev openssl
+    && apt-get install -y libpng-dev libmcrypt-dev libxslt-dev
 
 RUN set -x \
-    && docker-php-ext-install mcrypt xsl pdo_mysql soap zip bcmath ctype dom hash iconv mbstring simplexml
+    && docker-php-ext-install mcrypt xsl pdo_mysql soap zip bcmath
 
 RUN set -x \
     && apt-get install -y libfreetype6-dev libjpeg62-turbo-dev \
