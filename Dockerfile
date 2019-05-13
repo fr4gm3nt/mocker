@@ -1,5 +1,5 @@
 # Docker file for Mocker - Magento 2.3+
-FROM php:7.1-fpm
+FROM php:7.2-fpm
 
 RUN apt-get update && \
     DEBIAN_FRONTEND=noninteractive apt-get install -y nano vim curl git acl zip gnupg
@@ -49,4 +49,3 @@ RUN set -x \
     && php -r "copy('https://getcomposer.org/installer', 'composer-setup.php');" \
     && php composer-setup.php --install-dir=/usr/local/bin --filename=composer \
     && php -r "unlink('composer-setup.php');"
-
