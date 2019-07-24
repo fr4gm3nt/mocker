@@ -74,19 +74,19 @@ RUN set -x \
 RUN docker-php-ext-configure opcache --enable-opcache \
     && docker-php-ext-install opcache
     
-RUN apt-get update && \
-    mkdir -p /tmpbuild/libsodium && \
-    cd /tmpbuild/libsodium && \
-    curl -L https://download.libsodium.org/libsodium/releases/libsodium-1.0.18.tar.gz -o libsodium-1.0.18.tar.gz && \
-    tar xfvz libsodium-1.0.18.tar.gz && cd /tmpbuild/libsodium/libsodium-1.0.18/ && \
-    ./configure && \
-    make && \
-    make install && \
-    mv src/libsodium /usr/local/ && \
-    rm -Rf /tmpbuild/ && \
-    curl https://packages.sury.org/php/apt.gpg -o /etc/apt/trusted.gpg.d/php.gpg && \
-    rm -rf /var/lib/apt/lists/* && \
-    docker-php-ext-install sodium
+RUN apt-get update \
+	&& mkdir -p /tmpbuild/libsodium \
+	&& cd /tmpbuild/libsodium \
+	&& curl -L https://download.libsodium.org/libsodium/releases/libsodium-1.0.18.tar.gz -o libsodium-1.0.18.tar.gz \
+	&& tar xfvz libsodium-1.0.18.tar.gz && cd /tmpbuild/libsodium/libsodium-1.0.18/ \
+	&& ./configure \
+	&& make \
+	&& make install \
+	&& mv src/libsodium /usr/local/ \
+	&& rm -Rf /tmpbuild/ \
+	&& curl https://packages.sury.org/php/apt.gpg -o /etc/apt/trusted.gpg.d/php.gpg \
+	&& rm -rf /var/lib/apt/lists/* \
+	&& docker-php-ext-install sodium
 
 RUN set -x \
     && php -r "copy('https://getcomposer.org/installer', 'composer-setup.php');" \
