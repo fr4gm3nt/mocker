@@ -4,9 +4,6 @@ RUN apt-get update && \
     DEBIAN_FRONTEND=noninteractive apt-get install -y nano vim curl git acl zip gnupg
 
 RUN set -x && \
-    DEBIAN_FRONTEND=noninteractive apt-get install -y mysql-client
-
-RUN set -x && \
     curl -O https://files.magerun.net/n98-magerun2.phar && \
     chmod +x ./n98-magerun2.phar && \
     mv ./n98-magerun2.phar /usr/local/bin/n98-magerun2
@@ -73,7 +70,7 @@ RUN set -x \
 
 RUN docker-php-ext-configure opcache --enable-opcache \
     && docker-php-ext-install opcache
-    
+
 RUN apt-get update \
 	&& mkdir -p /tmpbuild/libsodium \
 	&& cd /tmpbuild/libsodium \
