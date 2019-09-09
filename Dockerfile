@@ -68,6 +68,9 @@ RUN set -x && \
 
 RUN set -x \
     && docker-php-ext-install pcntl
+    
+RUN docker-php-ext-configure opcache --enable-opcache \
+    && docker-php-ext-install opcache    
 
 RUN docker-php-ext-configure opcache --enable-opcache \
     && docker-php-ext-install opcache
