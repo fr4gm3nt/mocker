@@ -40,6 +40,9 @@ RUN set -x && \
 
 RUN set -x \
     && docker-php-ext-install pcntl
+    
+RUN docker-php-ext-configure opcache --enable-opcache \
+    && docker-php-ext-install opcache    
 
 RUN set -x \
     && php -r "copy('https://getcomposer.org/installer', 'composer-setup.php');" \
