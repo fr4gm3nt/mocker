@@ -14,7 +14,7 @@ RUN set -x \
     && docker-php-ext-install intl
 
 RUN set -x \
-    && apt-get install -y libpng-dev libmcrypt-dev libxslt-dev mcrypt
+    && apt-get install -y libpng-dev libmcrypt-dev libxslt-dev
 
 RUN set -x \
     && docker-php-ext-install xsl \
@@ -22,6 +22,7 @@ RUN set -x \
     zip \
     bcmath ctype \
     hash iconv \
+    mcrypt \
     mbstring
 
 RUN set -x \
