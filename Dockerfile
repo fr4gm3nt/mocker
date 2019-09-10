@@ -14,9 +14,7 @@ RUN set -x \
     && docker-php-ext-install intl
 
 RUN set -x \
-    && apt-get install -y libpng-dev libmcrypt-dev libxslt-dev
-
-RUN pecl install mcrypt-1.0.1 && docker-php-ext-enable mcrypt
+    && apt-get install -y libpng-dev libmcrypt-dev libxslt-dev mcrypt
 
 RUN set -x \
     && docker-php-ext-install xsl \
