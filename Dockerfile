@@ -5,9 +5,6 @@ RUN apt-get update && \
     DEBIAN_FRONTEND=noninteractive apt-get install -y nano vim curl git acl zip gnupg
 
 RUN set -x && \
-    DEBIAN_FRONTEND=noninteractive apt-get install -y mysql-client
-
-RUN set -x && \
     curl -O https://files.magerun.net/n98-magerun2.phar && \
     chmod +x ./n98-magerun2.phar && \
     mv ./n98-magerun2.phar /usr/local/bin/n98-magerun2
