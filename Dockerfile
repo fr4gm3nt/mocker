@@ -1,4 +1,4 @@
-# Docker file for Mocker - Magento 2.2+
+# Docker file for Mocker - Magento 2.2
 FROM php:7.1-fpm
 
 RUN apt-get update && \
@@ -14,39 +14,10 @@ RUN set -x \
     && docker-php-ext-install intl
 
 RUN set -x \
-    && apt-get install -y libpng-dev libmcrypt-dev libxslt-dev mcrypt
+    && apt-get install -y libpng-dev libmcrypt-dev libxslt-dev
 
 RUN set -x \
-    && docker-php-ext-install xsl \
-    pdo_mysql \
-    zip \
-    bcmath ctype \
-    hash iconv \
-    mbstring
-
-RUN set -x \
-    && docker-php-ext-install soap
-
-RUN set -x \
-    && docker-php-ext-install simplexml
-
-RUN set -xe \
-        && buildDeps=" \
-            $PHP_EXTRA_BUILD_DEPS \
-            libfreetype6-dev \
-            libjpeg62-turbo-dev \
-            libxpm-dev \
-            libpng-dev \
-            libicu-dev \
-            libxslt1-dev \
-            libmemcached-dev \
-            libxml2-dev \
-        " \
-    	&& apt-get update -q -y && apt-get install -q -y --no-install-recommends $buildDeps && rm -rf /var/lib/apt/lists/*
-
-RUN apt-get update -q -y \
-    && apt-get install -q -y --no-install-recommends \
-        ca-certificates acl sudo
+    && docker-php-ext-install mcrypt xsl pdo_mysql soap zip bcmath
 
 RUN set -x \
     && apt-get install -y libfreetype6-dev libjpeg62-turbo-dev \
@@ -66,9 +37,6 @@ RUN set -x && \
 
 RUN set -x \
     && docker-php-ext-install pcntl
-    
-RUN docker-php-ext-configure opcache --enable-opcache \
-    && docker-php-ext-install opcache    
 
 RUN set -x \
     && php -r "copy('https://getcomposer.org/installer', 'composer-setup.php');" \
