@@ -2,7 +2,7 @@
 FROM php:7.1-fpm
 
 RUN apt-get update && \
-    DEBIAN_FRONTEND=noninteractive apt-get install -y nano vim curl git acl zip gnupg
+    DEBIAN_FRONTEND=noninteractive apt-get install -y nano vim curl git acl zip gnupg cron
 
 RUN set -x && \
     curl -O https://files.magerun.net/n98-magerun2.phar && \
