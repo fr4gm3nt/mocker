@@ -14,7 +14,7 @@ RUN set -x && \
 RUN set -x && \
     docker-php-ext-install pdo_mysql
 RUN set -x && \
-    pecl install xdebug-2.5.5 && \
+    pecl install xdebug && \
     docker-php-ext-enable xdebug
 RUN set -x \
     && apt-get install -y libfreetype6-dev libjpeg62-turbo-dev \
