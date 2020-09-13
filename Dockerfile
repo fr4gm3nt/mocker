@@ -16,8 +16,15 @@ RUN set -x \
     && apt-get install -y libpng-dev libmcrypt-dev libxslt-dev
 
 RUN set -x \
-    && docker-php-ext-install xsl pdo_mysql soap mysqli
-    
+    && docker-php-ext-install xsl pdo_mysql soap mysqli bcmath gd
+
+RUN set -x \
+    apt-get install -y \
+    libzip-dev \
+    zip \
+    && docker-php-ext-configure zip --with-libzip \
+    && docker-php-ext-install zip
+
 RUN set -x && \
     apt-get install -y libfreetype6-dev libjpeg62-turbo-dev
 
