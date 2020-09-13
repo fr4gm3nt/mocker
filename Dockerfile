@@ -19,9 +19,7 @@ RUN set -x \
     && docker-php-ext-install xsl pdo_mysql soap mysqli bcmath gd
 
 RUN set -x \
-    apt-get install -y \
-    libzip-dev \
-    zip \
+    && apt-get install -y libzip-dev zip \
     && docker-php-ext-configure zip --with-libzip \
     && docker-php-ext-install zip
 
